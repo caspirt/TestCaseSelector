@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using CommandLine;
+using System.IO;
 
 namespace TestCaseSelector
 {
@@ -36,6 +37,22 @@ namespace TestCaseSelector
                 System.Console.WriteLine("No parameters for run . Please try with path to file and number of row");
                 System.Console.WriteLine("Usage: TestCaseSelector 'path' <num>");
                 return 1;
+            }
+
+
+            try
+            {
+                FileStream fs = new FileStream("somefile.txt", FileMode.Open);
+                //некоторый код, который выполнится, если файл удалось открыть без ошибок
+            }
+            catch
+            {
+                //код, который нужно выполнить, если случилась ошибка в блоке try
+            }
+            finally
+            {
+                fs.Close();
+                //сюда можно добавить любой код который должен выполнится независимо от того, случилась ли ошибка
             }
 
 
