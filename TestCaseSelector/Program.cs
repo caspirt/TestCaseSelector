@@ -37,6 +37,23 @@ namespace TestCaseSelector
                 System.Console.WriteLine("Usage: TestCaseSelector 'path' <num>");
                 return 1;
             }
+
+
+
+            int counter = 0;
+            string line;
+
+            // Read the file by line.
+            System.IO.StreamReader file =
+                new System.IO.StreamReader(options.InputFile);
+            while (((line = file.ReadLine()) != null ) && (counter < options.Rows))
+            {
+                System.Console.WriteLine(line);
+                counter++;
+            }
+
+
+
             return 0;
         }
     }
