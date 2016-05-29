@@ -39,39 +39,43 @@ namespace TestCaseSelector
                 return 1;
             }
 
+            FileStream fs=null;
 
             try
             {
-                FileStream fs = new FileStream("somefile.txt", FileMode.Open);
+                fs = new FileStream(options.InputFile, FileMode.Open);
                 //некоторый код, который выполнится, если файл удалось открыть без ошибок
             }
             catch
             {
-                //код, который нужно выполнить, если случилась ошибка в блоке try
+                System.Console.WriteLine("Imposible to open file ");
+                return 1;
             }
             finally
             {
                 fs.Close();
-                //сюда можно добавить любой код который должен выполнится независимо от того, случилась ли ошибка
+
+                int counter = 0;
+                string line;
+
+                // Read the file by line.
+                System.IO.StreamReader file =
+                    new System.IO.StreamReader(options.InputFile);
+                while (((line = file.ReadLine()) != null) && (counter < options.Rows))
+                {
+                    System.Console.WriteLine(line);
+                    counter++;
+                }
+                file.Close();
+                if (counter == 0)
+                    { 
+                        Console.WriteLine("There were 0 lines.");
+                    }
             }
-
-
-
-            int counter = 0;
-            string line;
-
-            // Read the file by line.
-            System.IO.StreamReader file =
-                new System.IO.StreamReader(options.InputFile);
-            while (((line = file.ReadLine()) != null ) && (counter < options.Rows))
-            {
-                System.Console.WriteLine(line);
-                counter++;
-            }
-
-
-
+            Console.WriteLine("Press any key to exit");
+            Console.ReadKey();
             return 0;
+
         }
     }
 }
