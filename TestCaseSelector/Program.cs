@@ -16,7 +16,7 @@ namespace TestCaseSelector
           HelpText = "Input file to be processed.")]
         public string InputFile { get; set; }
 
-        [Option('r', "rows", DefaultValue = 10,
+        [Option('r', "rows", DefaultValue = 10, Required = false,
           HelpText = "Number of rows")]
         public int Rows { get; set; }
         
@@ -29,7 +29,7 @@ namespace TestCaseSelector
             var options = new Options();
 
             CommandLine.Parser.Default.ParseArguments(args, options);
-            // options.InputFile = 1.txt
+            options.InputFile = "1.txt";
             // options.Rows = 10
 
             if (args.Length == 0)
